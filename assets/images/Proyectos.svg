@@ -1,0 +1,13 @@
+<svg id="Proyectos" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_3806" data-name="Rectangle 3806" class="cls-1" width="24" height="24"/>
+  <g id="Group_6126" data-name="Group 6126" transform="translate(1.2 1.2)">
+    <path id="Path_7368" data-name="Path 7368" d="M18,4.5H10.273L8.736,2.964A.9.9,0,0,0,8.1,2.7H3.6A1.8,1.8,0,0,0,1.8,4.5V17.1a1.8,1.8,0,0,0,1.8,1.8H18a1.8,1.8,0,0,0,1.8-1.8V6.3A1.8,1.8,0,0,0,18,4.5ZM3.6,17.1V6.3H18l0,10.8Z"/>
+  </g>
+</svg>

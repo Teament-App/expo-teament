@@ -1,0 +1,13 @@
+<svg id="Dashboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_3800" data-name="Rectangle 3800" class="cls-1" width="24" height="24"/>
+  <g id="Group_6120" data-name="Group 6120" transform="translate(1.2 1.2)">
+    <path id="Path_7357" data-name="Path 7357" d="M9,2.7H3.6a.9.9,0,0,0-.9.9V9a.9.9,0,0,0,.9.9H9A.9.9,0,0,0,9.9,9V3.6A.9.9,0,0,0,9,2.7ZM8.1,8.1H4.5V4.5H8.1ZM18,11.7H12.6a.9.9,0,0,0-.9.9V18a.9.9,0,0,0,.9.9H18a.9.9,0,0,0,.9-.9V12.6A.9.9,0,0,0,18,11.7Zm-.9,5.4H13.5V13.5h3.6ZM15.3,2.7a3.6,3.6,0,1,0,3.6,3.6A3.6,3.6,0,0,0,15.3,2.7Zm0,5.4a1.8,1.8,0,1,1,1.8-1.8A1.8,1.8,0,0,1,15.3,8.1Zm-9,3.6a3.6,3.6,0,1,0,3.6,3.6A3.6,3.6,0,0,0,6.3,11.7Zm0,5.4a1.8,1.8,0,1,1,1.8-1.8A1.8,1.8,0,0,1,6.3,17.1Z"/>
+  </g>
+</svg>

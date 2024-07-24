@@ -1,0 +1,14 @@
+<svg id="Calendario" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_3801" data-name="Rectangle 3801" class="cls-1" width="24" height="24"/>
+  <g id="Group_6121" data-name="Group 6121" transform="translate(1.2 1.2)">
+    <path id="Path_7358" data-name="Path 7358" d="M6.3,9.9H8.1v1.8H6.3Zm0,3.6H8.1v1.8H6.3ZM9.9,9.9h1.8v1.8H9.9Zm0,3.6h1.8v1.8H9.9Zm3.6-3.6h1.8v1.8H13.5Zm0,3.6h1.8v1.8H13.5Z"/>
+    <path id="Path_7359" data-name="Path 7359" d="M4.5,19.8H17.1A1.8,1.8,0,0,0,18.9,18V5.4a1.8,1.8,0,0,0-1.8-1.8H15.3V1.8H13.5V3.6H8.1V1.8H6.3V3.6H4.5A1.8,1.8,0,0,0,2.7,5.4V18A1.8,1.8,0,0,0,4.5,19.8ZM17.1,7.2V18H4.5V7.2Z"/>
+  </g>
+</svg>

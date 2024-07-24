@@ -1,0 +1,14 @@
+<svg id="Tareas" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_3802" data-name="Rectangle 3802" class="cls-1" width="24" height="24"/>
+  <g id="Group_6122" data-name="Group 6122" transform="translate(1.2 1.2)">
+    <path id="Path_7360" data-name="Path 7360" d="M10.8,1.8a9,9,0,1,0,9,9A9.01,9.01,0,0,0,10.8,1.8Zm0,16.2A7.2,7.2,0,1,1,18,10.8,7.208,7.208,0,0,1,10.8,18Z"/>
+    <path id="Path_7361" data-name="Path 7361" d="M9,12.228,6.93,10.163,5.659,11.437,9,14.772l6.035-6.035L13.764,7.464Z"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg id="Chat" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_3799" data-name="Rectangle 3799" class="cls-1" width="24" height="24"/>
+  <g id="Group_6119" data-name="Group 6119" transform="translate(1.2 1.2)">
+    <path id="Path_7356" data-name="Path 7356" d="M10.8,1.8c-4.963,0-9,3.23-9,7.2,0,2.617,1.708,4.964,4.5,6.241V19.8l4.806-3.6C15.927,16.067,19.8,12.888,19.8,9,19.8,5.03,15.763,1.8,10.8,1.8Zm0,12.6h-.3L8.1,16.2V14.025L7.523,13.8C5.1,12.871,3.6,11.03,3.6,9c0-2.978,3.23-5.4,7.2-5.4S18,6.022,18,9,14.77,14.4,10.8,14.4Z"/>
+  </g>
+</svg>
