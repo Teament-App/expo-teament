@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ThemeView from "../Themed/ThemeView";
-import { Text } from "../Themed/Themed";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
-import UserListItem from "../Lists/UserListItem";
+
+import { ThemedText } from "../ThemedText";
 
 const Users = ({ managers = [] }) => {
   const [selectedManagers, setSelectedManagers] = useState(
@@ -59,7 +59,7 @@ const Users = ({ managers = [] }) => {
         },
       ]}
     >
-      <Text
+      <ThemedText
         style={[
           {
             fontWeight: "700",
@@ -69,7 +69,7 @@ const Users = ({ managers = [] }) => {
         ]}
       >
         Personas assignadas
-      </Text>
+      </ThemedText>
       <SafeAreaView
         style={{
           width: "100%",

@@ -11,6 +11,7 @@ import { Colors } from "@/constants/Colors";
 import { GeneralStyles } from "@/constants/GeneralStyles";
 import { Avatar } from "@ui-kitten/components";
 import { Image } from "react-native-svg";
+import { ThemedText } from "./ThemedText";
 
 export type ProjectCardType = {
   id: number;
@@ -64,7 +65,7 @@ export default function ProjectCard({
       ]}
       onPress={goToProject}
     >
-      <Text style={GeneralStyles.fontBold}>{name}</Text>
+      <ThemedText style={GeneralStyles.fontBold}>{name}</ThemedText>
       <View style={styles.projectCardArrangement}>
         <View style={[styles.projectMembers]}>
           {members?.map(({ image_url, userId }) => {
@@ -83,8 +84,12 @@ export default function ProjectCard({
           })}
         </View>
         <View style={[GeneralStyles.flexCol, GeneralStyles.itemsEnd]}>
-          <Text style={[GeneralStyles.textXss]}>Progreso total</Text>
-          <Text style={[GeneralStyles.fontBold]}>{total_progress}%</Text>
+          <ThemedText style={[GeneralStyles.textXss]}>
+            Progreso total
+          </ThemedText>
+          <ThemedText style={[GeneralStyles.fontBold]}>
+            {`${total_progress}%`}
+          </ThemedText>
         </View>
       </View>
     </TouchableOpacity>

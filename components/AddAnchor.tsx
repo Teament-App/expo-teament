@@ -53,7 +53,7 @@ export default function AddAnchor({
           />
         </TouchableOpacity>
         {data?.map((elem: ManagerTaskType) => (
-          <UserChip userName={elem?.name} textSize="md" />
+          <UserChip key={elem?.userId} userName={elem?.name} textSize="md" />
         ))}
       </View>
     </View>

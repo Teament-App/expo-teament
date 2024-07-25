@@ -11,6 +11,7 @@ import FlagSvg from "../svg/FlagsSvg";
 import ClipboardSvg from "../svg/ClipboardSvg";
 import { fontFamilyRegular } from "@/utils/styles.util";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ThemedText } from "../ThemedText";
 
 const Task = ({
   status,
@@ -51,10 +52,10 @@ const Task = ({
           height={18}
           {...(complete ? { stroke: "#73bd50" } : {})}
         />
-        <TouchableOpacity  onPress={goToTaskDetail}>
-          <Text style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
+        <TouchableOpacity onPress={goToTaskDetail}>
+          <ThemedText style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
             {title || tittle}
-          </Text>
+          </ThemedText>
         </TouchableOpacity>
       </View>
       <View

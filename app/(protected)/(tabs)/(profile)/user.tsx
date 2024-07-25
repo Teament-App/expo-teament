@@ -9,6 +9,7 @@ import { useColorScheme } from "@/hooks/useColorScheme.web";
 import { ThemedView } from "@/components/ThemedView";
 import { Button, Text } from "@ui-kitten/components";
 import { Link, router } from "expo-router";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Settings() {
   const { user, signOut } = useSession();
@@ -87,7 +88,7 @@ export default function Settings() {
         >
           Editar
         </Button>
-        <Text
+        <ThemedText
           style={{
             marginTop: 16,
             textAlign: "center",
@@ -96,7 +97,7 @@ export default function Settings() {
           status="primary"
         >
           Cerrar sesión
-        </Text>
+        </ThemedText>
       </ThemedView>
     </SafeAreaView>
   );

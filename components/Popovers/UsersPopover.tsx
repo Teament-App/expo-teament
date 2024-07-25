@@ -12,9 +12,11 @@ import AddAnchor from "../AddAnchor";
 export default function UsersPopover({
   anchorLabel,
   dataToCompare,
+  onChange,
 }: {
   anchorLabel: string;
   dataToCompare: ManagerTaskType[];
+  onChange: (e?: any) => void;
 }) {
   const { response: teammatesResponse } = useReactQuery<{
     active_users: number;
@@ -53,6 +55,7 @@ export default function UsersPopover({
           renderItem={({ item }) =>
             item?.name && (
               <UserWithInfo
+                onPress={() => onChange(item)}
                 selected={dataToCompare?.some(
                   ({ userId }) => userId === item?.userId
                 )}

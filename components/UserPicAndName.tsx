@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, TextStyle, View } from "react-native";
 import { FontSizes, FontSizesType } from "@/constants/GeneralStyles";
 import { Avatar } from "@ui-kitten/components";
+import { ThemedText } from "./ThemedText";
 
 const UserPicAndName = ({
   image_url,
@@ -25,7 +26,7 @@ const UserPicAndName = ({
           uri: image_url || `https://cdn.verkian.com/resources/avatar_1.png`,
         }}
       />
-      <Text style={[styles?.name]}>{userName}</Text>
+      <ThemedText style={[styles?.name]}>{userName}</ThemedText>
     </View>
   );
 };

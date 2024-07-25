@@ -33,3 +33,12 @@ export const GET_TASK = async ({ queryKey }: any) => {
     throw e;
   }
 };
+
+export const GET_TASK_FILES = async ({ queryKey }: any) => {
+  const [, taskId] = queryKey;
+  try {
+    return await apiClient.get(`/task/files?taskId=${taskId}`);
+  } catch (e) {
+    throw e;
+  }
+};

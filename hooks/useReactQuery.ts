@@ -11,10 +11,12 @@ export const useReactQuery = <P>(
   isLoading: UseQueryResult["isLoading"];
   error: UseQueryResult["error"];
   refetch: UseQueryResult["refetch"];
+  isRefetching: UseQueryResult["isRefetching"];
 } => {
   const {
     data,
     isLoading,
+    isRefetching,
     error,
     refetch,
   }: UseQueryResult<ApiResponseWithData<P>, unknown> = useQuery(
@@ -35,5 +37,6 @@ export const useReactQuery = <P>(
     isLoading,
     error,
     refetch,
+    isRefetching,
   };
 };

@@ -1,7 +1,6 @@
 import { View, SafeAreaView, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { Colors, ColorsInterface } from "@/constants/Colors";
-import { Text } from "@ui-kitten/components";
 import { useReactQuery } from "@/hooks/useReactQuery";
 import { useRoute } from "@react-navigation/native";
 import { GET_PROJECT_DETAILS } from "@/services/Projects.endpoints";
@@ -10,15 +9,14 @@ import ProjectSectionContainer from "@/components/Project/ProjectSectionContaine
 import { ThemedView } from "@/components/ThemedView";
 import ProjectNextTasks from "@/components/Project/ProjectNextTasks";
 import { GET_PROJECT_TASKS } from "@/services/Tasks.endpoints";
-import { renderTasks } from "../(tabs)/(dashboard)";
-import { FlatList } from "react-native-gesture-handler";
 import TaskContainer from "@/components/TaskContainer";
 import { useQueryClient } from "react-query";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Project() {
   const queryClient = useQueryClient();
   const { params }: any = useRoute();
-  const { response } = useReactQuery(
+  const { response }: any = useReactQuery(
     ["project", params?.projectId],
     GET_PROJECT_DETAILS
   );
@@ -47,7 +45,7 @@ export default function Project() {
           <ProjectNextTasks />
         </ProjectSectionContainer>
         <View style={{ marginTop: 12 }}>
-          <Text
+          <ThemedText
             style={{
               color: Colors.light.gray_2,
               fontWeight: 700,
@@ -56,7 +54,7 @@ export default function Project() {
             }}
           >
             Tareas
-          </Text>
+          </ThemedText>
           <ProjectSectionContainer>
             <TaskContainer tasks={taskResponse} taskKey={"tasks"} />
           </ProjectSectionContainer>

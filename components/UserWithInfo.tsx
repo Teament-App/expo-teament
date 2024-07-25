@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, TextStyle, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { FontSizes, FontSizesType } from "@/constants/GeneralStyles";
 import { Avatar } from "@ui-kitten/components";
 import { commonColors } from "@/constants/Colors";
@@ -17,6 +24,7 @@ const UserWithInfo = ({
   textSize = "base",
   bold = false,
   selected = false,
+  onPress,
 }: {
   image_url?: string;
   userName?: string;
@@ -25,10 +33,12 @@ const UserWithInfo = ({
   textSize?: FontSizesType;
   job?: string;
   selected?: boolean;
+  onPress?: () => void;
 }) => {
   const styles = getStyles(position, textSize, bold);
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress}
       style={[
         styles?.container,
         {
@@ -77,7 +87,7 @@ const UserWithInfo = ({
           {job || "Sin puesto asignado"}
         </ThemedText>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

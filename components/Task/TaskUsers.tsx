@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Avatar, Text } from "@ui-kitten/components";
 import { Colors } from "@/constants/Colors";
+import { ThemedText } from "../ThemedText";
 const TaskUsers = ({
   mainUser,
   totalUsers,
@@ -44,7 +45,7 @@ const TaskUsers = ({
             },
           ]}
         >
-          <Text
+          <ThemedText
             style={[
               {
                 fontSize: 10,
@@ -53,7 +54,7 @@ const TaskUsers = ({
             ]}
           >
             {totalUsers}
-          </Text>
+          </ThemedText>
         </View>
       )}
     </View>

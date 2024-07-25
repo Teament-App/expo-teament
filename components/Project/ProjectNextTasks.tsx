@@ -1,12 +1,13 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
+import { ThemedText } from "../ThemedText";
 
 export default function ProjectNextTasks() {
   return (
     <>
       <View style={{ marginBottom: 6 }}>
-        <Text
+        <ThemedText
           style={{
             fontSize: 12,
             marginBottom: -2,
@@ -15,18 +16,18 @@ export default function ProjectNextTasks() {
           }}
         >
           Próxima tarea destacada
-        </Text>
-        <Text
+        </ThemedText>
+        <ThemedText
           style={{
             fontSize: 18,
             fontWeight: 700,
           }}
         >
           Sin tarea destacada
-        </Text>
+        </ThemedText>
       </View>
       <View>
-        <Text
+        <ThemedText
           style={{
             fontSize: 12,
             marginBottom: -2,
@@ -35,15 +36,15 @@ export default function ProjectNextTasks() {
           }}
         >
           Próxima Tarea por Completar
-        </Text>
-        <Text
+        </ThemedText>
+        <ThemedText
           style={{
             fontSize: 18,
             fontWeight: 700,
           }}
         >
           Sin tareas por entregar
-        </Text>
+        </ThemedText>
       </View>
     </>
   );

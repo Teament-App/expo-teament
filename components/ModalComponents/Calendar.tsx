@@ -7,6 +7,7 @@ import { useRouter } from "expo-router";
 import { Button, Text } from "@ui-kitten/components";
 import { commonColors } from "@/constants/Colors";
 import { ThemedView } from "../ThemedView";
+import { ThemedText } from "../ThemedText";
 
 const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
   const router = useRouter();
@@ -131,7 +132,7 @@ const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
         },
       ]}
     >
-      <Text
+      <ThemedText
         style={[
           {
             fontWeight: "700",
@@ -141,7 +142,7 @@ const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
         ]}
       >
         Fecha de entrega
-      </Text>
+      </ThemedText>
 
       <SafeAreaView
         style={{

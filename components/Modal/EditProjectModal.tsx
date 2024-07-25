@@ -5,6 +5,7 @@ import { fontFamilyBold, fontFamilyRegular } from "@/utils/styles.util";
 import { useForm } from "react-hook-form";
 import FormInput from "../FormInput";
 import { LoadingIndicator } from "../LoadingIndicator";
+import { ThemedText } from "../ThemedText";
 
 export default function EditProjectModal({
   projectName = "",
@@ -35,9 +36,9 @@ export default function EditProjectModal({
       onBackdropPress={toggleVisibility}
     >
       <Card style={{ width: 355 }} disabled={true}>
-        <Text style={{ fontSize: 16, fontFamily: fontFamilyBold }}>
+        <ThemedText style={{ fontSize: 16, fontFamily: fontFamilyBold }}>
           Editar proyecto
-        </Text>
+        </ThemedText>
         <View style={{ marginTop: 16, marginBottom: 16 }}>
           <FormInput
             label={"Nombre del proyecto"}
@@ -61,7 +62,7 @@ export default function EditProjectModal({
           appearance={isLoading ? "outline" : "primary"}
           {...(isLoading && { accessoryLeft: LoadingIndicator })}
         >
-          <Text>{isLoading ? "Guardando" : "Guardar"}</Text>
+          <ThemedText>{isLoading ? "Guardando" : "Guardar"}</ThemedText>
         </Button>
         <Button
           size="medium"

@@ -1,7 +1,8 @@
-import { Text, type TextProps, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Montserrat_400Regular, useFonts } from "@expo-google-fonts/montserrat";
+import { Text, type TextProps } from "@ui-kitten/components";
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
@@ -14,6 +15,7 @@ export function ThemedText({
   lightColor,
   darkColor,
   type = "default",
+  children,
   ...rest
 }: ThemedTextProps) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
@@ -27,7 +29,7 @@ export function ThemedText({
   return (
     <Text
       style={[
-        { color },
+        !rest?.status ? { color } : {},
         type === "default" ? styles.default : undefined,
         type === "title" ? styles.title : undefined,
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
@@ -37,7 +39,9 @@ export function ThemedText({
         style,
       ]}
       {...rest}
-    />
+    >
+      {children}
+    </Text>
   );
 }
 

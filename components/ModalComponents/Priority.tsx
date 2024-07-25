@@ -6,6 +6,7 @@ import { ThemedView } from "../ThemedView";
 import { commonColors } from "@/constants/Colors";
 import { Text } from "@ui-kitten/components";
 import FlagSvg from "../svg/FlagsSvg";
+import { ThemedText } from "../ThemedText";
 
 const Priority = ({ priority, title = true, onChange }: any) => {
   const theme = useColorScheme();
@@ -18,7 +19,7 @@ const Priority = ({ priority, title = true, onChange }: any) => {
   return (
     <ThemedView style={[{ width: "100%", flex: 1, padding: 24 }]}>
       <SafeAreaView style={[{ width: "100%" }, styles.optionsContainer]}>
-        {title && <Text style={[styles.title]}>Prioridad</Text>}
+        {title && <ThemedText style={[styles.title]}>Prioridad</ThemedText>}
         <TouchableOpacity
           onPress={changePriority("Low")}
           style={[
@@ -28,7 +29,7 @@ const Priority = ({ priority, title = true, onChange }: any) => {
           ]}
         >
           <FlagSvg stroke={commonColors.green} />
-          <Text>Baja</Text>
+          <ThemedText>Baja</ThemedText>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={changePriority("Medium")}
@@ -39,7 +40,7 @@ const Priority = ({ priority, title = true, onChange }: any) => {
           ]}
         >
           <FlagSvg stroke={commonColors.yellow} />
-          <Text>Media</Text>
+          <ThemedText>Media</ThemedText>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={changePriority("High")}
@@ -50,7 +51,7 @@ const Priority = ({ priority, title = true, onChange }: any) => {
           ]}
         >
           <FlagSvg stroke={commonColors.red} />
-          <Text>Alta</Text>
+          <ThemedText>Alta</ThemedText>
         </TouchableOpacity>
       </SafeAreaView>
     </ThemedView>

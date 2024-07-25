@@ -1,12 +1,12 @@
-import { Avatar, Button, Text } from "@ui-kitten/components";
+import { Avatar } from "@ui-kitten/components";
 import React, { useState } from "react";
 import { ThemedView } from "../ThemedView";
 import { Image, StyleSheet, Touchable, View } from "react-native";
 import { Colors, ColorsInterface } from "@/constants/Colors";
 import { BackAction } from "../BackAction";
-import { SvgUri } from "react-native-svg";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import EditProjectModal from "../Modal/EditProjectModal";
+import { ThemedText } from "../ThemedText";
 
 export default function ProjectHeader({
   color = Colors.dark.primary,
@@ -33,7 +33,7 @@ export default function ProjectHeader({
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <BackAction />
-        <Text style={styles.projectText}>{projectName}</Text>
+        <ThemedText style={styles.projectText}>{projectName}</ThemedText>
         <TouchableOpacity onPress={() => setVisibleModal((prev) => !prev)}>
           <Image
             source={{
