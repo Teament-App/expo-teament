@@ -12,6 +12,8 @@ import PriorityPopover from "@/components/Popovers/PriorityPopover";
 import { ScrollView } from "react-native-gesture-handler";
 import FileUploader from "@/components/FileUplader/FileUploader";
 import File from "@/components/TaskFile";
+import { FormatDateToDisplay } from "@/utils/translators";
+import DateDisplay from "@/components/DateDisplay";
 
 const useInputState = (initialValue = ""): InputProps => {
   const [value, setValue] = React.useState(initialValue);
@@ -35,6 +37,22 @@ const TaskDetail = () => {
     <SafeAreaView style={{ height: "100%" }}>
       <ScrollView>
         <ThemedView style={{ height: "100%", padding: 12 }}>
+          <ThemedView>
+            <ThemedText
+              style={{
+                fontSize: 12,
+                marginBottom: -6,
+                fontFamily: "Montserrat_600SemiBold",
+              }}
+              type="title"
+            >
+              Fecha de entrega
+            </ThemedText>
+            <DateDisplay
+              startDate={task?.initial_delivery_date}
+              endDate={task?.delivery_date}
+            />
+          </ThemedView>
           <ThemedView>
             <ThemedText
               style={{ fontSize: 24, fontFamily: "Montserrat_600SemiBold" }}
