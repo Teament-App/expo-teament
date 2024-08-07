@@ -18,3 +18,11 @@ export const GET_PROJECT_DETAILS = async (keys: any) => {
     return await apiClient.get(`/projects/${id}`);
   } catch (e) {}
 };
+
+export const UPDATE_PROJECT = async ({ projectId, data }: any) => {
+  try {
+    return await apiClient.patch(`/projects/${projectId}`, data);
+  } catch (e) {
+    throw e;
+  }
+};

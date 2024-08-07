@@ -32,6 +32,7 @@ export default function Project() {
       <ProjectHeader
         members={response?.members}
         color={response?.color}
+        id={response?.id}
         projectName={response?.name}
       />
       <ThemedView

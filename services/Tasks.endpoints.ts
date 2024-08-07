@@ -42,3 +42,11 @@ export const GET_TASK_FILES = async ({ queryKey }: any) => {
     throw e;
   }
 };
+
+export const UPDATE_TASK = async ({ taskId, data }: any) => {
+  try {
+    return await apiClient.patch(`/task/${taskId}`, data);
+  } catch (e) {
+    throw e;
+  }
+};

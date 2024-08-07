@@ -12,18 +12,21 @@ export default function ProjectHeader({
   color = Colors.dark.primary,
   projectName,
   members,
+  id,
 }: {
   projectName: string;
   color: string;
   members: any[];
+  id: number;
 }) {
   const [visibleModal, setVisibleModal] = useState(false);
-  console.log("Members: ", members);
   const styles = getStyles("light");
   return (
     <ThemedView style={[styles.projectHeader, { backgroundColor: color }]}>
       {visibleModal && (
         <EditProjectModal
+          id={id}
+          color={color}
           projectName={projectName}
           visible={visibleModal}
           toggleVisibility={() => setVisibleModal((prev) => !prev)}

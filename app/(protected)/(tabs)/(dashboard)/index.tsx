@@ -7,7 +7,6 @@ import { useTranslator } from "@/hooks/useTranslator";
 import { projectCardTranslator } from "@/utils/translators";
 import ProjectsList from "@/components/ProjectsList";
 import { GET_MY_TASKS } from "@/services/Tasks.endpoints";
-import { FlatList } from "react-native-gesture-handler";
 import { MinifiedTaskType } from "@/types/Task.type";
 import { Colors } from "@/constants/Colors";
 import Task from "@/components/Task/Task";
@@ -23,7 +22,7 @@ export const renderTasks = ({ item }: { item: any }) => {
 
 export default function TabTwoScreen() {
   const { signOut } = useSession();
-  const { response } = useReactQuery(["projects"], GET_USER_PROJECTS);
+  const { response }: any = useReactQuery(["projects"], GET_USER_PROJECTS);
   const { response: tasks, error: tasksError } = useReactQuery(
     ["my-tasks"],
     GET_MY_TASKS

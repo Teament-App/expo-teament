@@ -6,12 +6,18 @@ import { useForm } from "react-hook-form";
 import FormInput from "../FormInput";
 import { LoadingIndicator } from "../LoadingIndicator";
 import { ThemedText } from "../ThemedText";
+import ColorPicker from "../ColorPicker";
+import { UPDATE_PROJECT } from "@/services/Projects.endpoints";
+import { useQueryClient } from "react-query";
 
 export default function EditProjectModal({
   projectName = "",
   toggleVisibility,
   visible = true,
+  color,
+  id,
 }: any) {
+  const queryClient = useQueryClient();
   const [isLoading, setLoading] = useState(false);
   const {
     control,
@@ -21,14 +27,23 @@ export default function EditProjectModal({
     mode: "all",
   });
 
-  const submit = () => {
-    console.log("Guardar");
-    const values = getValues();
-    console.log("Valores: ", values);
-    setLoading(true);
-    // toggleVisibility();
+  const submit = async () => {
+    try {
+      const values = getValues();
+      setLoading(true);
+      // toggleVisibility();
+      await UPDATE_PROJECT({ data: values, projectId: id });
+      queryClient.invalidateQueries({
+        predicate: ({ queryKey }) => {
+          return queryKey[0] === "project";
+        },
+      });
+      queryClient.invalidateQueries(["projects"]);
+      toggleVisibility();
+    } catch (e) {
+      console.log("Error", e);
+    }
   };
-  console.log(isLoading);
   return (
     <Modal
       visible={visible}
@@ -39,7 +54,7 @@ export default function EditProjectModal({
         <ThemedText style={{ fontSize: 16, fontFamily: fontFamilyBold }}>
           Editar proyecto
         </ThemedText>
-        <View style={{ marginTop: 16, marginBottom: 16 }}>
+        <View style={{ marginTop: 16, marginBottom: 0 }}>
           <FormInput
             label={"Nombre del proyecto"}
             size="large"
@@ -54,8 +69,11 @@ export default function EditProjectModal({
             }}
           />
         </View>
+        <View style={{ marginTop: 16 }}>
+          <ColorPicker value={color} name="color" control={control} />
+        </View>
         <Button
-          size="medium"
+          size="small"
           disabled={!isDirty}
           style={{ marginBottom: 12 }}
           onPress={submit}
@@ -65,7 +83,7 @@ export default function EditProjectModal({
           <ThemedText>{isLoading ? "Guardando" : "Guardar"}</ThemedText>
         </Button>
         <Button
-          size="medium"
+          size="small"
           disabled={isLoading}
           appearance="outline"
           onPress={toggleVisibility}
