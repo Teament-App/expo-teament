@@ -8,7 +8,7 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.jpg",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,9 +18,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/Verkian-app-dark.jpg",
+        "foregroundImage": "./assets/images/Verkian-app-dark.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.verkianapp"
     },
     "web": {
       "bundler": "metro",
@@ -29,12 +30,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-font",
-        {
-          "fonts": ["node_modules/@expo-google-fonts/Montserrat_400Regular.ttf"]
-        }
-      ],
+      
       [
         "expo-document-picker",
         {
@@ -47,7 +43,8 @@
           "photosPermission": "Select and upload images",
           "cameraPermission": "Allo ${PRODUCT_NAME} to access your camera"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
