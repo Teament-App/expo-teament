@@ -20,8 +20,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Verkian-app-dark.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.verkianapp"
+      }
     },
     "web": {
       "bundler": "metro",
