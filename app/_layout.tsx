@@ -7,7 +7,6 @@ import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useRef, useState } from "react";
 import "react-native-reanimated";
-import "@mobiscroll/react/dist/css/mobiscroll.scss";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -18,7 +17,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { default as customTheme } from "../assets/custom-theme.json";
 import * as Notifications from "expo-notifications";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Platform } from "react-native";
+import { Platform, UIManager } from "react-native";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
 import { default as mapping } from "../mapping.json";
@@ -34,11 +33,16 @@ import {
   Montserrat_900Black,
   useFonts,
 } from "@expo-google-fonts/montserrat";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const queryClient = new QueryClient();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
+if (Platform.OS === "android") {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -200,7 +204,7 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <SafeAreaProvider>
       <IconRegistry icons={EvaIconsPack} />
 
       <GestureHandlerRootView>
@@ -227,6 +231,6 @@ export default function RootLayout() {
           </ThemeContext.Provider>
         </QueryClientProvider>
       </GestureHandlerRootView>
-    </>
+    </SafeAreaProvider>
   );
 }

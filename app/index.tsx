@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Button, Icon } from "@ui-kitten/components";
 import LogoExtended from "@/components/svg/LogoExtended";
 import { useForm } from "react-hook-form";
@@ -12,6 +7,7 @@ import FormInput from "@/components/FormInput";
 import apiClient from "@/services/Axios.client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSession } from "@/context/SessionContext";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function index() {
   const [passVisible, setPassVisible] = useState(true);

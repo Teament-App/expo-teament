@@ -11,9 +11,7 @@ export const FontSizes = {
 
 export type FontSizesType = "xs" | "sm" | "md" | "base" | "lg" | "xl";
 export const GeneralStyles = StyleSheet.create({
-  fontBold: {
-    fontWeight: "700",
-  },
+  fontBold: {},
   textSm: {
     fontSize: 14,
   },
@@ -41,6 +39,6 @@ export const GeneralStyles = StyleSheet.create({
     alignItems: "center",
   },
   overflowAuto: {
-    overflow: "scroll",
+    overflow: "hidden",
   },
 });

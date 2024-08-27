@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet } from "react-native";
 import { useSession } from "@/context/SessionContext";
 import { ThemedView } from "@/components/ThemedView";
 import { useReactQuery } from "@/hooks/useReactQuery";
@@ -11,6 +11,7 @@ import { MinifiedTaskType } from "@/types/Task.type";
 import { Colors } from "@/constants/Colors";
 import Task from "@/components/Task/Task";
 import TaskContainer from "@/components/TaskContainer";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const renderTasks = ({ item }: { item: any }) => {
   const minifyTask: MinifiedTaskType = {

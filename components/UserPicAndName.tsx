@@ -40,7 +40,6 @@ const getStyles = (
 ) => {
   const name: TextStyle = {
     fontSize: FontSizes[fontSize],
-    ...(bold ? { fontWeight: "700" } : {}),
     marginTop: 16,
   };
   if (placement === "center") {

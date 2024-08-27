@@ -44,13 +44,15 @@ export default function AddAnchor({
             borderRadius: 16,
           }}
         >
-          <Image
-            source={{
-              uri: "https://cdn.verkian.com/resources/add_plus.png",
-            }}
-            width={18}
-            height={18}
-          />
+          <View>
+            <Image
+              source={{
+                uri: "https://cdn.verkian.com/resources/add_plus.png",
+              }}
+              width={18}
+              height={18}
+            />
+          </View>
         </TouchableOpacity>
         {data?.map((elem: ManagerTaskType) => (
           <UserChip key={elem?.userId} userName={elem?.name} textSize="md" />

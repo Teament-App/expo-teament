@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import ThemeView from "../Themed/ThemeView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
 
 import { ThemedText } from "../ThemedText";
+import { ThemedView } from "../ThemedView";
+import { View } from "react-native";
+import { Text } from "@ui-kitten/components";
 
 const Users = ({ managers = [] }) => {
   const [selectedManagers, setSelectedManagers] = useState(
@@ -48,7 +50,7 @@ const Users = ({ managers = [] }) => {
     },
   ];
   return (
-    <ThemeView
+    <ThemedView
       style={[
         {
           height: "auto",
@@ -62,7 +64,6 @@ const Users = ({ managers = [] }) => {
       <ThemedText
         style={[
           {
-            fontWeight: "700",
             fontSize: 18,
             marginBottom: 16,
           },
@@ -82,10 +83,13 @@ const Users = ({ managers = [] }) => {
           keyExtractor={(item) => `${item?.userId}`}
           data={otherManagers}
           renderItem={({ item }) => (
-            <UserListItem
-              selected={selectedManagers.includes(item.userId)}
-              {...item}
-            />
+            // <UserListItem
+            //   selected={selectedManagers.includes(item.userId)}
+            //   {...item}
+            // />
+            <View>
+              <Text>Hola</Text>
+            </View>
           )}
           getItemLayout={(data, index) => ({
             length: 60,
@@ -94,7 +98,7 @@ const Users = ({ managers = [] }) => {
           })}
         ></FlatList>
       </SafeAreaView>
-    </ThemeView>
+    </ThemedView>
   );
 };
 

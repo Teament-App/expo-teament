@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { useSession } from "../../../../context/SessionContext";
 
@@ -10,6 +10,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { Button, Text } from "@ui-kitten/components";
 import { Link, router } from "expo-router";
 import { ThemedText } from "@/components/ThemedText";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
   const { user, signOut } = useSession();

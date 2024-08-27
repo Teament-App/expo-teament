@@ -14,7 +14,7 @@ export default function Modal() {
   const passedInfo = JSON.parse(taskData as any);
   console.log("TASK ID: ", taskData);
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={[{ flex: 1, alignItems: "center", justifyContent: "center" }]}>
       {/* Use `../` as a simple way to navigate to the root. This is not analogous to "goBack". */}
       {!isPresented && <Link href="../">Dismiss</Link>}
       {type === "calendar" && (

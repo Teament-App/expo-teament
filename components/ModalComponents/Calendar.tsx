@@ -28,9 +28,7 @@ const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
         backgroundColor: commonColors.secondary,
         borderRadius: 2,
       },
-      text: {
-        fontWeight: "500",
-      },
+      text: {},
     },
   };
   const secondaryMarkedStyles = {
@@ -42,9 +40,7 @@ const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
         height: 30,
         marginTop: 1,
       },
-      text: {
-        fontWeight: "500",
-      },
+      text: {},
     },
   };
 
@@ -135,7 +131,6 @@ const CalendarComponent = ({ delivery_date, initial_delivery_date }: any) => {
       <ThemedText
         style={[
           {
-            fontWeight: "700",
             fontSize: 18,
             marginBottom: 16,
           },

@@ -49,7 +49,6 @@ const TaskUsers = ({
             style={[
               {
                 fontSize: 10,
-                fontWeight: "700",
               },
             ]}
           >

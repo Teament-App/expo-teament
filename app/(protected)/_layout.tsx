@@ -8,7 +8,6 @@ import { Slot, Stack, Tabs, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
-import "@mobiscroll/react/dist/css/mobiscroll.scss";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { useColorScheme } from "@/hooks/useColorScheme";

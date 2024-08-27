@@ -1,4 +1,4 @@
-import { View, SafeAreaView, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { Colors, ColorsInterface } from "@/constants/Colors";
 import { useReactQuery } from "@/hooks/useReactQuery";
@@ -12,6 +12,7 @@ import { GET_PROJECT_TASKS } from "@/services/Tasks.endpoints";
 import TaskContainer from "@/components/TaskContainer";
 import { useQueryClient } from "react-query";
 import { ThemedText } from "@/components/ThemedText";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Project() {
   const queryClient = useQueryClient();
@@ -49,7 +50,6 @@ export default function Project() {
           <ThemedText
             style={{
               color: Colors.light.gray_2,
-              fontWeight: 700,
               fontSize: 16,
               marginBottom: 4,
             }}
@@ -77,7 +77,6 @@ const getStyles = (theme: string) => {
     },
     projectText: {
       color: Colors[fontColor as keyof ColorsInterface].text,
-      fontWeight: "700",
     },
   });
 };

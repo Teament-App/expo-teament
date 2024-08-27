@@ -1,4 +1,4 @@
-import { SafeAreaView, Task, View } from "react-native";
+import { Task, View } from "react-native";
 import React, {
   useCallback,
   useContext,
@@ -23,6 +23,7 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { UPDATE_TASK } from "@/services/Tasks.endpoints";
 import { useQueryClient } from "react-query";
 import { router } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const useInputState = (initialValue = ""): InputProps => {
   const [value, setValue] = React.useState(initialValue);

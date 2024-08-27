@@ -53,9 +53,11 @@ const Task = ({
           {...(complete ? { stroke: "#73bd50" } : {})}
         />
         <TouchableOpacity onPress={goToTaskDetail}>
-          <ThemedText style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
-            {title || tittle}
-          </ThemedText>
+          <View>
+            <ThemedText style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
+              {title || tittle}
+            </ThemedText>
+          </View>
         </TouchableOpacity>
       </View>
       <View
