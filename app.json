@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.verkian-app"
+      "bundleIdentifier": "com.verkian.app"
     },
     "android": {
       "adaptiveIcon": {

@@ -12,6 +12,9 @@ import { Colors } from "@/constants/Colors";
 import Task from "@/components/Task/Task";
 import TaskContainer from "@/components/TaskContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "@ui-kitten/components";
+import { ThemedText } from "@/components/ThemedText";
+import { router } from "expo-router";
 
 export const renderTasks = ({ item }: { item: any }) => {
   const minifyTask: MinifiedTaskType = {
@@ -34,11 +37,7 @@ export default function TabTwoScreen() {
   );
 
   return (
-    <SafeAreaView
-      style={{
-        height: "100%",
-      }}
-    >
+    <SafeAreaView>
       <ThemedView
         style={{
           height: "100%",
@@ -48,6 +47,28 @@ export default function TabTwoScreen() {
         <ThemedView style={styles.container}>
           {/* <Button onPress={() => signOut()}>Cerrar sesión</Button> */}
           <ProjectsList data={translatedResponse} horizontal />
+        </ThemedView>
+        <ThemedView
+          style={{
+            display: "flex",
+            gap: 8,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <ThemedText
+            type="subtitle"
+            style={{ fontFamily: "Montserrat_600SemiBold" }}
+          >
+            Tasks
+          </ThemedText>
+          <Button
+            onPress={() => router.navigate("/(protected)/(task)/new")}
+            size="small"
+            appearance="ghost"
+          >
+            <ThemedText>Crear tarea</ThemedText>
+          </Button>
         </ThemedView>
         <ThemedView
           style={[{ width: "100%", height: "100%" }, styles.tasksContainer]}

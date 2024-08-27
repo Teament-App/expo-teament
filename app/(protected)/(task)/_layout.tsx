@@ -16,6 +16,12 @@ const TabLayout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="new"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };

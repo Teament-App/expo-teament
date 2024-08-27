@@ -47,7 +47,6 @@ export function SessionProvider(props: React.PropsWithChildren) {
     try {
       await refetch();
     } catch (e: any) {
-      console.log(e);
       if (e.status === 401) {
         setSession(null);
         setUser(null);
