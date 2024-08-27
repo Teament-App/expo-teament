@@ -1,7 +1,6 @@
 import { Tabs } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import "react-native-reanimated";
-import "@mobiscroll/react/dist/css/mobiscroll.scss";
 import { Avatar, Icon, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import DashboardIcon from "../../../assets/images/Dashboard.svg";

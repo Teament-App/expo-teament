@@ -70,7 +70,7 @@ const TaskDetail = () => {
       const ans = await UPDATE_TASK({ taskId: task?.id, data: request });
       console.log(ans);
       queryClient.invalidateQueries(["my-tasks"]);
-      router.navigate("(protected)/(tabs)/(dashboard)");
+      router.navigate("/(protected)/(tabs)/(dashboard)");
     } catch (e) {
       console.log(e);
     }
@@ -156,24 +156,6 @@ const TaskDetail = () => {
             />
           </ThemedView>
           <ThemedView style={{ marginTop: 8 }}>
-            <UsersPopover
-              onChange={(addedUser) => {
-                updateTask({
-                  reviewers: task?.reviewers?.some(
-                    (manager) => manager.userId === addedUser.id
-                  )
-                    ? task?.reviewers?.filter(
-                        (manager) => manager.userId !== addedUser.id
-                      )
-                    : [...task?.reviewers, addedUser],
-                });
-                setDirty((prev: Set<any>) => new Set([...prev, "reviewers"]));
-              }}
-              anchorLabel="Reviewers"
-              dataToCompare={task?.reviewers}
-            />
-          </ThemedView>
-          <ThemedView style={{ marginTop: 8 }}>
             <ThemedText
               style={{ fontFamily: "Montserrat_600SemiBold", fontSize: 12 }}
               type="defaultSemiBold"
@@ -192,27 +174,13 @@ const TaskDetail = () => {
               }}
             />
           </ThemedView>
-          <ThemedView style={{ marginTop: 8 }}>
-            <ThemedText
-              style={{ fontFamily: "Montserrat_600SemiBold", fontSize: 12 }}
-              type="defaultSemiBold"
-            >
-              Archivos
-            </ThemedText>
-            <FileUploader refetch={refetchFiles} task={task} />
-            <View style={{ marginTop: 8 }}>
-              {files?.map((file) => (
-                <File {...file} />
-              ))}
-            </View>
-          </ThemedView>
         </ThemedView>
       </ScrollView>
       {dirty?.size > 0 && (
         <BottomSheet
           ref={bottomSheetRef}
           onChange={handleSheetChanges}
-          snapPoints={[50, 125]}
+          snapPoints={[150, 150]}
         >
           <BottomSheetView
             style={[

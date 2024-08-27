@@ -65,31 +65,33 @@ export default function ProjectCard({
       ]}
       onPress={goToProject}
     >
-      <ThemedText style={GeneralStyles.fontBold}>{name}</ThemedText>
-      <View style={styles.projectCardArrangement}>
-        <View style={[styles.projectMembers]}>
-          {members?.map(({ image_url, userId }) => {
-            const uri =
-              image_url || `https://cdn.verkian.com/resources/avatar_1.png`;
-            return (
-              <Avatar
-                key={userId}
-                source={{
-                  uri,
-                }}
-                size="tiny"
-                shape="round"
-              />
-            );
-          })}
-        </View>
-        <View style={[GeneralStyles.flexCol, GeneralStyles.itemsEnd]}>
-          <ThemedText style={[GeneralStyles.textXss]}>
-            Progreso total
-          </ThemedText>
-          <ThemedText style={[GeneralStyles.fontBold]}>
-            {`${total_progress}%`}
-          </ThemedText>
+      <View>
+        <ThemedText style={GeneralStyles.fontBold}>{name}</ThemedText>
+        <View style={styles.projectCardArrangement}>
+          <View style={[styles.projectMembers]}>
+            {members?.map(({ image_url, userId }) => {
+              const uri =
+                image_url || `https://cdn.verkian.com/resources/avatar_1.png`;
+              return (
+                <Avatar
+                  key={userId}
+                  source={{
+                    uri,
+                  }}
+                  size="tiny"
+                  shape="round"
+                />
+              );
+            })}
+          </View>
+          <View style={[GeneralStyles.flexCol, GeneralStyles.itemsEnd]}>
+            <ThemedText style={[GeneralStyles.textXss]}>
+              Progreso total
+            </ThemedText>
+            <ThemedText style={[GeneralStyles.fontBold]}>
+              {`${total_progress}%`}
+            </ThemedText>
+          </View>
         </View>
       </View>
     </TouchableOpacity>

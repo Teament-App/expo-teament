@@ -28,8 +28,10 @@ const Priority = ({ priority, title = true, onChange }: any) => {
             localPriority === "Low" && styles.priorityLowSelected,
           ]}
         >
-          <FlagSvg stroke={commonColors.green} />
-          <ThemedText>Baja</ThemedText>
+          <View>
+            <FlagSvg stroke={commonColors.green} />
+            <ThemedText>Baja</ThemedText>
+          </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={changePriority("Medium")}
@@ -39,8 +41,10 @@ const Priority = ({ priority, title = true, onChange }: any) => {
             localPriority === "Medium" && styles.priorityMediumSelected,
           ]}
         >
-          <FlagSvg stroke={commonColors.yellow} />
-          <ThemedText>Media</ThemedText>
+          <View>
+            <FlagSvg stroke={commonColors.yellow} />
+            <ThemedText>Media</ThemedText>
+          </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={changePriority("High")}
@@ -50,8 +54,10 @@ const Priority = ({ priority, title = true, onChange }: any) => {
             localPriority === "High" && styles.priorityHighSelected,
           ]}
         >
-          <FlagSvg stroke={commonColors.red} />
-          <ThemedText>Alta</ThemedText>
+          <View>
+            <FlagSvg stroke={commonColors.red} />
+            <ThemedText>Alta</ThemedText>
+          </View>
         </TouchableOpacity>
       </SafeAreaView>
     </ThemedView>
@@ -68,7 +74,6 @@ const modalStyles = (theme: string) =>
       gap: 8,
     },
     title: {
-      fontWeight: "700",
       fontSize: 18,
       marginBottom: 16,
       marginTop: -42,

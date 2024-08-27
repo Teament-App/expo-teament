@@ -74,7 +74,9 @@ export default function FileUploader({
       onPress={selectImage(true)}
       style={[styles.uploadContainer]}
     >
-      <ThemedText style={{ fontSize: 14 }}>Subir archivos</ThemedText>
+      <View>
+        <ThemedText style={{ fontSize: 14 }}>Subir archivos</ThemedText>
+      </View>
     </TouchableOpacity>
   );
 }

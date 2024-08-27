@@ -36,10 +36,12 @@ export default function PriorityAnchor({
           gap: 8,
         }}
       >
-        <FlagSvg stroke={color} />
-        <ThemedText type="defaultSemiBold" style={{ color }}>
-          {text}
-        </ThemedText>
+        <View>
+          <FlagSvg stroke={color} />
+          <ThemedText type="defaultSemiBold" style={{ color }}>
+            {text}
+          </ThemedText>
+        </View>
       </TouchableOpacity>
     </View>
   );

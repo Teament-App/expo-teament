@@ -46,46 +46,48 @@ const UserWithInfo = ({
         },
       ]}
     >
-      <Avatar
-        size="medium"
-        source={{
-          uri: image_url || `https://cdn.verkian.com/resources/avatar_1.png`,
-        }}
-      />
-      <View
-        style={{
-          display: "flex",
-          gap: 0,
-        }}
-      >
-        <ThemedText
-          type="title"
-          style={[
-            styles?.name,
-            {
-              fontFamily: "Montserrat_500Medium",
-              fontSize: FontSizes["md"],
-              marginBottom: 0,
-              lineHeight: 0,
-            },
-          ]}
+      <View>
+        <Avatar
+          size="medium"
+          source={{
+            uri: image_url || `https://cdn.verkian.com/resources/avatar_1.png`,
+          }}
+        />
+        <View
+          style={{
+            display: "flex",
+            gap: 0,
+          }}
         >
-          {userName}
-        </ThemedText>
-        <ThemedText
-          type="default"
-          style={[
-            styles?.name,
-            {
-              fontFamily: "Montserrat_500Medium",
-              fontSize: FontSizes["xs"],
-              lineHeight: 0,
-              color: "#757575",
-            },
-          ]}
-        >
-          {job || "Sin puesto asignado"}
-        </ThemedText>
+          <ThemedText
+            type="title"
+            style={[
+              styles?.name,
+              {
+                fontFamily: "Montserrat_500Medium",
+                fontSize: FontSizes["md"],
+                marginBottom: 0,
+                lineHeight: 0,
+              },
+            ]}
+          >
+            {userName}
+          </ThemedText>
+          <ThemedText
+            type="default"
+            style={[
+              styles?.name,
+              {
+                fontFamily: "Montserrat_500Medium",
+                fontSize: FontSizes["xs"],
+                lineHeight: 0,
+                color: "#757575",
+              },
+            ]}
+          >
+            {job || "Sin puesto asignado"}
+          </ThemedText>
+        </View>
       </View>
     </TouchableOpacity>
   );

@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>com.anonymous.verkian-app</string>
+          <string>com.verkian.app</string>
         </array>
       </dict>
       <dict>

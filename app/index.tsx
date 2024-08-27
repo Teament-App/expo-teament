@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Button, Icon } from "@ui-kitten/components";
 import LogoExtended from "@/components/svg/LogoExtended";
 import { useForm } from "react-hook-form";
@@ -12,6 +7,8 @@ import FormInput from "@/components/FormInput";
 import apiClient from "@/services/Axios.client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSession } from "@/context/SessionContext";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function index() {
   const [passVisible, setPassVisible] = useState(true);
@@ -24,9 +21,9 @@ export default function index() {
   });
   const renderEyeIcon = (props: any): React.ReactElement => {
     return (
-      <TouchableWithoutFeedback onPress={() => setPassVisible((prev) => !prev)}>
+      <TouchableOpacity onPress={() => setPassVisible((prev) => !prev)}>
         <Icon {...props} name={passVisible ? "eye-off" : "eye"} />
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     );
   };
 

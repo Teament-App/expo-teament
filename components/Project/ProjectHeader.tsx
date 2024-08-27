@@ -38,16 +38,18 @@ export default function ProjectHeader({
         <BackAction />
         <ThemedText style={styles.projectText}>{projectName}</ThemedText>
         <TouchableOpacity onPress={() => setVisibleModal((prev) => !prev)}>
-          <Image
-            source={{
-              uri: "https://cdn.verkian.com/resources/edit-1.png",
-            }}
-            style={{
-              marginLeft: 12,
-              width: 20,
-              height: 20,
-            }}
-          />
+          <View>
+            <Image
+              source={{
+                uri: "https://cdn.verkian.com/resources/edit-1.png",
+              }}
+              style={{
+                marginLeft: 12,
+                width: 20,
+                height: 20,
+              }}
+            />
+          </View>
         </TouchableOpacity>
       </View>
       <View
@@ -87,7 +89,6 @@ const getStyles = (theme: string) => {
     },
     projectText: {
       color: Colors[fontColor as keyof ColorsInterface].text,
-      fontWeight: "700",
     },
   });
 };

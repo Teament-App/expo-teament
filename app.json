@@ -14,13 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.verkian-app"
+      "bundleIdentifier": "com.verkian.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Verkian-app-dark.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.verkian.app"
     },
     "web": {
       "bundler": "metro",

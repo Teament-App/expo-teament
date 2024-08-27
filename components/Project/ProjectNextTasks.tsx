@@ -12,7 +12,6 @@ export default function ProjectNextTasks() {
             fontSize: 12,
             marginBottom: -2,
             color: Colors.dark.gray_2,
-            fontWeight: 500,
           }}
         >
           Próxima tarea destacada
@@ -20,7 +19,6 @@ export default function ProjectNextTasks() {
         <ThemedText
           style={{
             fontSize: 18,
-            fontWeight: 700,
           }}
         >
           Sin tarea destacada
@@ -32,7 +30,6 @@ export default function ProjectNextTasks() {
             fontSize: 12,
             marginBottom: -2,
             color: Colors.dark.gray_2,
-            fontWeight: 500,
           }}
         >
           Próxima Tarea por Completar
@@ -40,7 +37,6 @@ export default function ProjectNextTasks() {
         <ThemedText
           style={{
             fontSize: 18,
-            fontWeight: 700,
           }}
         >
           Sin tareas por entregar
