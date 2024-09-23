@@ -25,7 +25,7 @@ export const useReactQuery = <P>(
     queryFn,
     options
   );
-  console.log('GUARDANDING....');
+  console.log('GUARDANDING...');
   console.log('Data:', data);
   const [response, setResponse] = useState<any>();
 

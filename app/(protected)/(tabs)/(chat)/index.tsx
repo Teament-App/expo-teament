@@ -19,6 +19,7 @@ const client = StreamChat.getInstance('esr6fnjdvts9');
 export default function TabTwoScreen() {
   const { signOut } = useSession();
   const [ userData, setUserData ] = useState<any>(undefined);
+  const [successConnection, setSetsuccessConnection] = useState<boolean|undefined>(undefined);
 
   if (!client.userID) {
     const { user: userInfo } = useSession();
@@ -40,16 +41,30 @@ export default function TabTwoScreen() {
             name: userInfo?.name,
           },
           chatUserToken
-        ).catch(() => {
-          console.log('NO JALÓ, EJECUANTDO....');
-          const { response: chatLoginData } = useReactQuery(['chat-info'], GET_CHAT_TOKEN);
-          console.log('LOGIIIIIN:', chatLoginData);
-          setUserData(chatLoginData);
-        });
+        ).catch(() => { setSetsuccessConnection(false) });
       }
     }
   }
 
+  useEffect(() => {
+    if (successConnection === false) {
+      console.log('NO JALÓ, EJECUANTDO....');
+      const { response: chatLoginData } = useReactQuery(['user-info'], GET_CHAT_TOKEN);
+      /* for (let index = 0; index <= 1; index++) {
+        try {
+          GET_CHAT_TOKEN().then((ress) => {
+            console.log('LOGIIIIIN:', ress);
+            setUserData(ress);
+            setSetsuccessConnection(true);
+          });
+        } catch (e) {
+          console.log('ERROR:', e);
+        }
+      } */
+      console.log('LOGIIIIIN:', chatLoginData);
+      setUserData(chatLoginData);
+    }
+  }, [successConnection])
 
 
 
