@@ -38,6 +38,16 @@ export default function RootLayout() {
           }}
         ></Tabs.Screen>
         <Tabs.Screen
+          name="(chat)"
+          options={{
+            tabBarLabel: "Chat",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <ProjectsIcon fill={focused ? commonColors.primary : "#000"} />
+            ),
+          }}
+        ></Tabs.Screen>
+        <Tabs.Screen
           name="(profile)"
           options={{
             tabBarLabel: "Perfil",

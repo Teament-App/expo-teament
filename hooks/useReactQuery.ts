@@ -13,6 +13,7 @@ export const useReactQuery = <P>(
   refetch: UseQueryResult["refetch"];
   isRefetching: UseQueryResult["isRefetching"];
 } => {
+  console.log('EJECUTANDING....');
   const {
     data,
     isLoading,
@@ -24,6 +25,8 @@ export const useReactQuery = <P>(
     queryFn,
     options
   );
+  console.log('GUARDANDING....');
+  console.log('Data:', data);
   const [response, setResponse] = useState<any>();
 
   useEffect(() => {
