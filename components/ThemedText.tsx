@@ -27,19 +27,9 @@ export function ThemedText(props: ThemedTextProps) {
   });
 
   if (!fontsLoaded || fontError) {
-    console.log("NULO");
     return null;
   }
-  console.log("Style: ", [
-    !rest?.status ? { color } : {},
-    type === "default" ? styles.default : {},
-    type === "title" ? styles.title : {},
-    type === "defaultSemiBold" ? styles.defaultSemiBold : {},
-    type === "subtitle" ? styles.subtitle : {},
-    type === "link" ? styles.link : {},
-    { fontFamily: "Montserrat_400Regular" },
-    style,
-  ]);
+
   return (
     <Text
       style={[

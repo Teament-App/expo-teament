@@ -15,7 +15,6 @@ import { ThemedText } from "@/components/ThemedText";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Project() {
-  const queryClient = useQueryClient();
   const { params }: any = useRoute();
   const { response }: any = useReactQuery(
     ["project", params?.projectId],
@@ -25,8 +24,6 @@ export default function Project() {
     ["project-tasks", params?.projectId],
     GET_PROJECT_TASKS
   );
-
-  console.log("Response: ", response);
 
   return (
     <SafeAreaView>

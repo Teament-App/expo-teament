@@ -20,7 +20,6 @@ export const renderTasks = ({ item }: { item: any }) => {
   const minifyTask: MinifiedTaskType = {
     ...item,
   };
-  console.log("Minify: ", minifyTask);
   return <Task {...minifyTask} />;
 };
 

@@ -18,7 +18,7 @@ import PriorityPopover from "@/components/Popovers/PriorityPopover";
 import { ScrollView } from "react-native-gesture-handler";
 import DateDisplay from "@/components/DateDisplay";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { UPDATE_TASK } from "@/services/Tasks.endpoints";
+import { CREATE_TASK, UPDATE_TASK } from "@/services/Tasks.endpoints";
 import { useQueryClient } from "react-query";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -49,6 +49,7 @@ const TaskDetail = () => {
           { userId: user?.userId, name: `${user?.name} ${user?.last_name}` },
         ],
       });
+      setDirty((prev: Set<any>) => new Set([...prev, "managers"]));
     }
   }, []);
 
@@ -61,7 +62,29 @@ const TaskDetail = () => {
   const save = async () => {
     try {
       const keys = Array.from(dirty);
-      const request: any = {};
+      const request: any = {
+        delayed: 0,
+        delivery_date: null,
+        description: null,
+        end_date: null,
+        estimated_start_date: null,
+        highlighted: 0,
+        id: null,
+        is_subtasks: false,
+        last_task_recurrent: null,
+        managers: [],
+        priority: "Low",
+        projects_id: null,
+        recurrence_rule: "never",
+        recurrence_until: null,
+        reviewers: [],
+        start_date: null,
+        status: "Not started",
+        subtasks: [],
+        tasks_id: null,
+        title: "",
+        nomenclature: "",
+      };
       keys.forEach((key) => {
         if (key === "managers") {
           const auxArr = task?.managers?.map((manager) => manager.userId);
@@ -76,9 +99,11 @@ const TaskDetail = () => {
         }
       });
       console.log("request", request);
-      // queryClient.invalidateQueries(["my-tasks"]);
-      // router.navigate("/(protected)/(tabs)/(dashboard)");
+      await CREATE_TASK({ data: request });
+      queryClient.invalidateQueries(["my-tasks"]);
+      router.navigate("/(protected)/(tabs)/(dashboard)");
     } catch (e) {
+      console.log(JSON.stringify(e, null, 2));
       console.log(e);
     }
   };

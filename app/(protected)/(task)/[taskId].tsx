@@ -66,9 +66,7 @@ const TaskDetail = () => {
           request[key] = task[key as keyof Task];
         }
       });
-      console.log(request);
       const ans = await UPDATE_TASK({ taskId: task?.id, data: request });
-      console.log(ans);
       queryClient.invalidateQueries(["my-tasks"]);
       router.navigate("(protected)/(tabs)/(dashboard)");
     } catch (e) {

@@ -27,7 +27,6 @@ export default function UsersPopover({
   }>(["teammates"], GET_TEAM_USERS);
   const [visible, setVisible] = useState(false);
   const hide = () => setVisible(false);
-  console.log("TEAMMATES: ", teammatesResponse);
   return (
     <Popover
       visible={visible}
@@ -54,9 +53,6 @@ export default function UsersPopover({
         <FlatList
           data={teammatesResponse?.users}
           renderItem={({ item }) => {
-            if (item?.name) {
-              console.log("ITEM: ", item?.name);
-            }
             return (
               item?.name && (
                 <UserWithInfo

@@ -29,7 +29,6 @@ export default function FileUploader({
       }
 
       if (!result.canceled) {
-        console.log(result.assets[0].uri);
         await uploadImage(result?.assets[0]);
       }
     } catch (e) {

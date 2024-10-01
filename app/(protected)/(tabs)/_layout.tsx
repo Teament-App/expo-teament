@@ -12,7 +12,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const theme = useColorScheme();
-  console.log("THEME: ", theme);
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />

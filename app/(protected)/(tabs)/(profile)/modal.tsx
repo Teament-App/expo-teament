@@ -48,7 +48,6 @@ export default function EditProfile() {
   });
 
   const renderInputs = () => {
-    console.log(user);
     return inputsTypes.map(({ key, label, type }, index) =>
       type === "text" ? (
         <FormInput

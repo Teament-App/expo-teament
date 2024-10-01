@@ -23,7 +23,6 @@ const UserWithInfo = ({
   selected?: boolean;
   onPress?: () => void;
 }) => {
-  console.log("NOMBRE DEL USUARIO: ", userName);
   const styles = getStyles(position, textSize, bold);
   return (
     <TouchableOpacity

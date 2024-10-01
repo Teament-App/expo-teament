@@ -57,7 +57,6 @@ export const TaskProvider = (props: React.PropsWithChildren) => {
   });
 
   useEffect(() => {
-    console.log(taskId);
     if (taskId) {
       refetch();
       refetchFiles();
@@ -65,12 +64,10 @@ export const TaskProvider = (props: React.PropsWithChildren) => {
   }, [taskId]);
 
   useEffect(() => {
-    console.log("response: ", response);
     if (response) {
       updateTask(response);
     }
   }, [response]);
-  console.log("isRefetching", isRefetching);
   useEffect(() => {
     if (responseFiles) {
       setFiles(responseFiles);

@@ -22,7 +22,6 @@ export const ProjectSelect = ({ onChange, selectedValue }: any) => {
   if (!projects) {
     return null;
   }
-  console.log(selectedValue?.name);
   return (
     <View style={{ marginTop: 8 }}>
       <ThemedText
