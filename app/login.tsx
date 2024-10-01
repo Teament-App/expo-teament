@@ -9,8 +9,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSession } from "@/context/SessionContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 export default function index() {
+  const { t } = useTranslation("login");
   const [passVisible, setPassVisible] = useState(true);
   const { signIn } = useSession();
   const form = useForm({
@@ -46,18 +48,18 @@ export default function index() {
       <FormProvider {...form}>
         <View>
           <FormInput
-            label={"Correo electrónico"}
+            label={t("email")}
             size="large"
             style={[styles.input]}
             placeholder="john.doe@verkian.com"
             name="email"
             autocapitalize="none"
             rules={{
-              required: "Ingresa tu correo electrónico",
+              required: t("email-error-required"),
             }}
           />
           <FormInput
-            label={"Contraseña"}
+            label={t("password")}
             size="large"
             style={[styles.input]}
             placeholder="*********"
@@ -65,7 +67,7 @@ export default function index() {
             accessoryRight={renderEyeIcon}
             name="password"
             rules={{
-              required: "Ingresa tu cotraseña",
+              required: t("password-error-required"),
             }}
           />
 
@@ -74,7 +76,7 @@ export default function index() {
             style={[styles.button]}
             onPress={submit}
           >
-            Iniciar sesión
+            {t("login-button")}
           </Button>
         </View>
       </FormProvider>

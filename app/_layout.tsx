@@ -34,6 +34,9 @@ import {
   useFonts,
 } from "@expo-google-fonts/montserrat";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import i18n from "../i18n";
+import { I18nextProvider } from "react-i18next";
+import { useLocales } from "expo-localization";
 
 const queryClient = new QueryClient();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -213,31 +216,32 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <IconRegistry icons={EvaIconsPack} />
-
-      <GestureHandlerRootView>
-        <QueryClientProvider client={queryClient}>
-          <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <ThemeProvider
-              value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-            >
-              <ApplicationProvider
-                {...eva}
-                theme={{
-                  ...(colorScheme === "dark"
-                    ? { ...eva.dark }
-                    : { ...eva.light }),
-                  ...customTheme,
-                }}
-                customMapping={mapping as any}
+      <I18nextProvider i18n={i18n}>
+        <GestureHandlerRootView>
+          <QueryClientProvider client={queryClient}>
+            <ThemeContext.Provider value={{ theme, toggleTheme }}>
+              <ThemeProvider
+                value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
               >
-                <SessionProvider>
-                  <StackLayout />
-                </SessionProvider>
-              </ApplicationProvider>
-            </ThemeProvider>
-          </ThemeContext.Provider>
-        </QueryClientProvider>
-      </GestureHandlerRootView>
+                <ApplicationProvider
+                  {...eva}
+                  theme={{
+                    ...(colorScheme === "dark"
+                      ? { ...eva.dark }
+                      : { ...eva.light }),
+                    ...customTheme,
+                  }}
+                  customMapping={mapping as any}
+                >
+                  <SessionProvider>
+                    <StackLayout />
+                  </SessionProvider>
+                </ApplicationProvider>
+              </ThemeProvider>
+            </ThemeContext.Provider>
+          </QueryClientProvider>
+        </GestureHandlerRootView>
+      </I18nextProvider>
     </SafeAreaProvider>
   );
 }
