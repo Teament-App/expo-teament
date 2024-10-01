@@ -1,19 +1,22 @@
 import { View, StyleSheet, FlatList } from "react-native";
 import React from "react";
-import { Control, RegisterOptions, useController } from "react-hook-form";
+import {
+  Control,
+  RegisterOptions,
+  useController,
+  useFormContext,
+} from "react-hook-form";
 import { Input } from "@ui-kitten/components";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 export default function ColorPicker({
   value = "#988ead",
-  control,
   name,
   rules,
   defaultValue,
 }: {
   value?: string;
-  control: Control;
   name: string;
   rules?: Pick<
     RegisterOptions<any>,
@@ -36,11 +39,12 @@ export default function ColorPicker({
     "#74a2c9",
     "#a9b0b5",
   ];
+  const { control } = useFormContext();
   const { field } = useController({
+    control,
     name,
     rules,
     defaultValue: defaultValue || value,
-    control,
   });
 
   const RenderColors = ({ item }: { item: string }) => {
