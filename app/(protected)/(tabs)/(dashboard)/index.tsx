@@ -60,7 +60,7 @@ export default function TabTwoScreen() {
             type="subtitle"
             style={{ fontFamily: "Montserrat_600SemiBold" }}
           >
-            Tasks
+            Tareas
           </ThemedText>
           <Button
             onPress={() => router.navigate("/(protected)/(task)/new")}

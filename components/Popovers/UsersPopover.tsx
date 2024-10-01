@@ -27,6 +27,7 @@ export default function UsersPopover({
   }>(["teammates"], GET_TEAM_USERS);
   const [visible, setVisible] = useState(false);
   const hide = () => setVisible(false);
+  console.log("TEAMMATES: ", teammatesResponse);
   return (
     <Popover
       visible={visible}
@@ -52,18 +53,23 @@ export default function UsersPopover({
       >
         <FlatList
           data={teammatesResponse?.users}
-          renderItem={({ item }) =>
-            item?.name && (
-              <UserWithInfo
-                onPress={() => onChange(item)}
-                selected={dataToCompare?.some(
-                  ({ userId }) => userId === item?.userId
-                )}
-                userName={`${item?.name} ${item?.last_name}`}
-                job={item?.job || null}
-              />
-            )
-          }
+          renderItem={({ item }) => {
+            if (item?.name) {
+              console.log("ITEM: ", item?.name);
+            }
+            return (
+              item?.name && (
+                <UserWithInfo
+                  onPress={() => onChange(item)}
+                  selected={dataToCompare?.some(
+                    ({ userId }) => userId === item?.userId
+                  )}
+                  userName={`${item?.name} ${item?.last_name}`}
+                  job={item?.job || null}
+                />
+              )
+            );
+          }}
           keyExtractor={(item) => item?.userId}
         ></FlatList>
       </Layout>

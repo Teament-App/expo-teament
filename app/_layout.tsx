@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Stack, useRouter, useSegments } from "expo-router";
+import { Stack, useNavigation, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useRef, useState } from "react";
 import "react-native-reanimated";
@@ -103,6 +103,7 @@ async function registerForPushNotificationsAsync() {
 }
 
 const StackLayout = () => {
+  const navigation = useNavigation();
   const { session, signOut } = useSession();
   const segments = useSegments();
   const router = useRouter();
@@ -110,8 +111,14 @@ const StackLayout = () => {
   useEffect(() => {
     const inAuthGroup = segments[0] === "(protected)";
     if (!session) {
-      router.replace("/");
-      // signOut();
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: "login",
+          },
+        ],
+      } as any);
     } else if (session) {
       router.replace("/(protected)/(tabs)/(dashboard)");
     }
@@ -119,7 +126,7 @@ const StackLayout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
+        name="login"
         options={{
           headerShown: false,
         }}

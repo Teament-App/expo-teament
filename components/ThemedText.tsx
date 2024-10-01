@@ -8,33 +8,47 @@ export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  ellipsis?: boolean;
 };
 
-export function ThemedText({
-  style,
-  lightColor,
-  darkColor,
-  type = "default",
-  children,
-  ...rest
-}: ThemedTextProps) {
+export function ThemedText(props: ThemedTextProps) {
+  const {
+    style,
+    lightColor,
+    darkColor,
+    type = "default",
+    children,
+    ellipsis = false,
+    ...rest
+  } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
   let [fontsLoaded, fontError] = useFonts({
     Montserrat_400Regular,
   });
 
-  if (!fontsLoaded && !fontError) {
+  if (!fontsLoaded || fontError) {
+    console.log("NULO");
     return null;
   }
+  console.log("Style: ", [
+    !rest?.status ? { color } : {},
+    type === "default" ? styles.default : {},
+    type === "title" ? styles.title : {},
+    type === "defaultSemiBold" ? styles.defaultSemiBold : {},
+    type === "subtitle" ? styles.subtitle : {},
+    type === "link" ? styles.link : {},
+    { fontFamily: "Montserrat_400Regular" },
+    style,
+  ]);
   return (
     <Text
       style={[
         !rest?.status ? { color } : {},
-        type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
-        type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-        type === "subtitle" ? styles.subtitle : undefined,
-        type === "link" ? styles.link : undefined,
+        type === "default" ? styles.default : {},
+        type === "title" ? styles.title : {},
+        type === "defaultSemiBold" ? styles.defaultSemiBold : {},
+        type === "subtitle" ? styles.subtitle : {},
+        type === "link" ? styles.link : {},
         { fontFamily: "Montserrat_400Regular" },
         style,
       ]}
