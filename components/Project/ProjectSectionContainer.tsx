@@ -9,6 +9,7 @@ import {
   Swipeable,
 } from "react-native-gesture-handler";
 import { useSharedValue, withTiming } from "react-native-reanimated";
+import { isAndroid } from "@/utils/utils";
 
 const { width } = Dimensions.get("screen");
 
@@ -46,10 +47,13 @@ const getStyles = (theme: string) =>
       padding: 12,
       borderRadius: 6,
       backgroundColor: Colors[theme as keyof ColorsInterface].background,
-      shadowColor: "rgba(61, 75, 92, 1)", // The color without the alpha value
-      shadowOffset: { width: 0, height: 6 },
-      shadowOpacity: 0.1,
-      shadowRadius: 12,
-      elevation: 6, // This is to provide shadow on Android
+      ...(!isAndroid() && {
+        shadowColor: "rgba(61, 75, 92, 1)", // The color without the alpha value
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.1,
+        shadowRadius: 12,
+        elevation: 6,
+      }),
+      // This is to provide shadow on Android
     },
   });

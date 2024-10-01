@@ -38,6 +38,10 @@ const TaskDetail = () => {
   const [dirty, setDirty] = useState<Set<string>>(new Set([]));
   const bottomSheetRef = useRef<BottomSheet>(null);
 
+  const goBack = () => {
+    router.back();
+  };
+
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
@@ -232,7 +236,7 @@ const TaskDetail = () => {
             >
               <ThemedText>Guardar</ThemedText>
             </Button>
-            <Button appearance="outline" size="small">
+            <Button onPress={goBack} appearance="outline" size="small">
               <ThemedText>Cancelar</ThemedText>
             </Button>
           </BottomSheetView>

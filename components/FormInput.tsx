@@ -33,7 +33,6 @@ export default function FormInput({
     rules,
     defaultValue,
   });
-  console.log(fieldState);
   return (
     <Input
       size={size}

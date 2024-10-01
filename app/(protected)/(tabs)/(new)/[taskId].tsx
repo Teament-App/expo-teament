@@ -16,13 +16,14 @@ import { ProjectSelect } from "@/components/ProjectSelector";
 import UsersPopover from "@/components/Popovers/UsersPopover";
 import PriorityPopover from "@/components/Popovers/PriorityPopover";
 import { ScrollView } from "react-native-gesture-handler";
+import FileUploader from "@/components/FileUplader/FileUploader";
+import File from "@/components/TaskFile";
 import DateDisplay from "@/components/DateDisplay";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { CREATE_TASK, UPDATE_TASK } from "@/services/Tasks.endpoints";
+import { UPDATE_TASK } from "@/services/Tasks.endpoints";
 import { useQueryClient } from "react-query";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSession } from "@/context/SessionContext";
 
 const useInputState = (initialValue = ""): InputProps => {
   const [value, setValue] = React.useState(initialValue);
@@ -31,8 +32,8 @@ const useInputState = (initialValue = ""): InputProps => {
 
 const TaskDetail = () => {
   const queryClient = useQueryClient();
-  const { user } = useSession();
-  const { task, setTaskId, updateTask } = useContext(TaskContext);
+  const { task, setTaskId, updateTask, files, refetchFiles } =
+    useContext(TaskContext);
   const { params }: any = useRoute();
   const multilineInputState = useInputState(task?.description);
   const [dirty, setDirty] = useState<Set<string>>(new Set([]));
@@ -40,17 +41,6 @@ const TaskDetail = () => {
 
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
-  }, []);
-
-  useEffect(() => {
-    if (task && !task?.managers?.length) {
-      updateTask({
-        managers: [
-          { userId: user?.userId, name: `${user?.name} ${user?.last_name}` },
-        ],
-      });
-      setDirty((prev: Set<any>) => new Set([...prev, "managers"]));
-    }
   }, []);
 
   useEffect(() => {
@@ -62,29 +52,7 @@ const TaskDetail = () => {
   const save = async () => {
     try {
       const keys = Array.from(dirty);
-      const request: any = {
-        delayed: 0,
-        delivery_date: null,
-        description: null,
-        end_date: null,
-        estimated_start_date: null,
-        highlighted: 0,
-        id: null,
-        is_subtasks: false,
-        last_task_recurrent: null,
-        managers: [],
-        priority: "Low",
-        projects_id: null,
-        recurrence_rule: "never",
-        recurrence_until: null,
-        reviewers: [],
-        start_date: null,
-        status: "Not started",
-        subtasks: [],
-        tasks_id: null,
-        title: "",
-        nomenclature: "",
-      };
+      const request: any = {};
       keys.forEach((key) => {
         if (key === "managers") {
           const auxArr = task?.managers?.map((manager) => manager.userId);
@@ -98,11 +66,10 @@ const TaskDetail = () => {
           request[key] = task[key as keyof Task];
         }
       });
-      await CREATE_TASK(request);
+      const ans = await UPDATE_TASK({ taskId: task?.id, data: request });
       queryClient.invalidateQueries(["my-tasks"]);
-      router.navigate("/(protected)/(tabs)/(dashboard)");
+      router.navigate("(protected)/(tabs)/(dashboard)");
     } catch (e) {
-      console.log(JSON.stringify(e, null, 2));
       console.log(e);
     }
   };
@@ -128,7 +95,6 @@ const TaskDetail = () => {
               }}
               value={task?.title}
               textStyle={{ fontSize: 18, fontFamily: "Montserrat_600SemiBold" }}
-              placeholder="Escribe el título de la tarea"
             />
           </ThemedView>
           <ThemedView>
@@ -164,7 +130,6 @@ const TaskDetail = () => {
             <PriorityPopover
               priority={task?.priority}
               onChange={(value: any) => {
-                console.log("value", value);
                 updateTask({ priority: value });
                 setDirty((prev: Set<any>) => new Set([...prev, "priority"]));
               }}
@@ -189,6 +154,24 @@ const TaskDetail = () => {
             />
           </ThemedView>
           <ThemedView style={{ marginTop: 8 }}>
+            <UsersPopover
+              onChange={(addedUser) => {
+                updateTask({
+                  reviewers: task?.reviewers?.some(
+                    (manager) => manager.userId === addedUser.id
+                  )
+                    ? task?.reviewers?.filter(
+                        (manager) => manager.userId !== addedUser.id
+                      )
+                    : [...task?.reviewers, addedUser],
+                });
+                setDirty((prev: Set<any>) => new Set([...prev, "reviewers"]));
+              }}
+              anchorLabel="Reviewers"
+              dataToCompare={task?.reviewers}
+            />
+          </ThemedView>
+          <ThemedView style={{ marginTop: 8 }}>
             <ThemedText
               style={{ fontFamily: "Montserrat_600SemiBold", fontSize: 12 }}
               type="defaultSemiBold"
@@ -207,13 +190,27 @@ const TaskDetail = () => {
               }}
             />
           </ThemedView>
+          <ThemedView style={{ marginTop: 8 }}>
+            <ThemedText
+              style={{ fontFamily: "Montserrat_600SemiBold", fontSize: 12 }}
+              type="defaultSemiBold"
+            >
+              Archivos
+            </ThemedText>
+            <FileUploader refetch={refetchFiles} task={task} />
+            <View style={{ marginTop: 8 }}>
+              {files?.map((file) => (
+                <File {...file} />
+              ))}
+            </View>
+          </ThemedView>
         </ThemedView>
       </ScrollView>
       {dirty?.size > 0 && (
         <BottomSheet
           ref={bottomSheetRef}
           onChange={handleSheetChanges}
-          snapPoints={[150, 150]}
+          snapPoints={[50, 125]}
         >
           <BottomSheetView
             style={[
