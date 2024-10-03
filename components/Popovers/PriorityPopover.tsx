@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Layout, Popover } from "@ui-kitten/components";
 import PriorityAnchor from "../PriorityAnchor";
 import Priority from "../ModalComponents/Priority";
+import { isAndroid } from "@/utils/utils";
+import { commonColors } from "@/constants/Colors";
 
 export default function PriorityPopover({
   priority,
@@ -14,6 +16,7 @@ export default function PriorityPopover({
   const hide = () => setVisible(false);
   return (
     <Popover
+      style={[{ borderColor: isAndroid() ? commonColors.primary : "" }]}
       placement={"right end"}
       visible={visible}
       onBackdropPress={hide}

@@ -1,20 +1,8 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TextStyle, TouchableOpacity, View } from "react-native";
 import { FontSizes, FontSizesType } from "@/constants/GeneralStyles";
 import { Avatar } from "@ui-kitten/components";
-import { commonColors } from "@/constants/Colors";
 import { ThemedText } from "./ThemedText";
-import {
-  Montserrat_500Medium,
-  Montserrat_700Bold,
-} from "@expo-google-fonts/montserrat";
 
 const UserWithInfo = ({
   image_url,
@@ -46,7 +34,13 @@ const UserWithInfo = ({
         },
       ]}
     >
-      <View>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 12,
+        }}
+      >
         <Avatar
           size="medium"
           source={{
@@ -56,34 +50,28 @@ const UserWithInfo = ({
         <View
           style={{
             display: "flex",
+            flexDirection: "column",
             gap: 0,
           }}
         >
           <ThemedText
-            type="title"
-            style={[
-              styles?.name,
-              {
-                fontFamily: "Montserrat_500Medium",
-                fontSize: FontSizes["md"],
-                marginBottom: 0,
-                lineHeight: 0,
-              },
-            ]}
+            type="defaultSemiBold"
+            style={{
+              fontSize: FontSizes["md"],
+              marginBottom: 0,
+              lineHeight: 24,
+            }}
           >
             {userName}
           </ThemedText>
           <ThemedText
             type="default"
-            style={[
-              styles?.name,
-              {
-                fontFamily: "Montserrat_500Medium",
-                fontSize: FontSizes["xs"],
-                lineHeight: 0,
-                color: "#757575",
-              },
-            ]}
+            style={{
+              fontFamily: "Montserrat_500Medium",
+              fontSize: FontSizes["xs"],
+              lineHeight: 12,
+              color: "#757575",
+            }}
           >
             {job || "Sin puesto asignado"}
           </ThemedText>

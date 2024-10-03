@@ -6,6 +6,7 @@ import { useReactQuery } from "@/hooks/useReactQuery";
 import { GET_USER_PROJECTS } from "@/services/Projects.endpoints";
 import ProjectsList from "@/components/ProjectsList";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function TabTwoScreen() {
   const { signOut } = useSession();
@@ -20,6 +21,16 @@ export default function TabTwoScreen() {
       }}
     >
       <ThemedView style={styles.container}>
+        <ThemedText
+          style={{
+            fontFamily: "Montserrat_600SemiBold",
+            fontSize: 24,
+            paddingBottom: 12,
+            paddingHorizontal: 8,
+          }}
+        >
+          Proyectos
+        </ThemedText>
         <ProjectsList data={projects?.projects} />
       </ThemedView>
     </SafeAreaView>

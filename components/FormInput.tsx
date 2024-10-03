@@ -1,13 +1,12 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { Input } from "@ui-kitten/components";
-import { useController } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 export type CommonInputProps = {
   name: string;
   label: string;
   rules?: any;
   placeholder: string;
-  control: any;
+  control?: any;
   style: any;
   accessoryRight?: any;
   size?: "large" | "small" | "medium" | "tiny";
@@ -20,7 +19,6 @@ export default function FormInput({
   label,
   rules,
   placeholder,
-  control,
   style,
   accessoryRight,
   size = "large",
@@ -28,13 +26,13 @@ export default function FormInput({
   defaultValue = "",
   autocapitalize = "words",
 }: CommonInputProps) {
+  const { control } = useFormContext();
   const { field, fieldState } = useController({
     name,
     control,
     rules,
     defaultValue,
   });
-
   return (
     <Input
       size={size}
@@ -46,7 +44,7 @@ export default function FormInput({
       accessoryRight={accessoryRight}
       secureTextEntry={secureTextEntry}
       autoCapitalize={autocapitalize}
-      // status={fieldState.error || fieldState.invalid ? "danger" : ""}
+      status={fieldState.error ? "danger" : "basic"}
       caption={fieldState.error?.message}
       value={field.value}
     />

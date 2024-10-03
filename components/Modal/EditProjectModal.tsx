@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Button, Card, Modal, Text } from "@ui-kitten/components";
 import { fontFamilyBold, fontFamilyRegular } from "@/utils/styles.util";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import FormInput from "../FormInput";
 import { LoadingIndicator } from "../LoadingIndicator";
 import { ThemedText } from "../ThemedText";
@@ -19,17 +19,13 @@ export default function EditProjectModal({
 }: any) {
   const queryClient = useQueryClient();
   const [isLoading, setLoading] = useState(false);
-  const {
-    control,
-    formState: { isDirty },
-    getValues,
-  } = useForm({
+  const form = useForm({
     mode: "all",
   });
 
   const submit = async () => {
     try {
-      const values = getValues();
+      const values = form.getValues();
       setLoading(true);
       // toggleVisibility();
       await UPDATE_PROJECT({ data: values, projectId: id });
@@ -51,46 +47,47 @@ export default function EditProjectModal({
       onBackdropPress={toggleVisibility}
     >
       <Card style={{ width: 355 }} disabled={true}>
-        <ThemedText style={{ fontSize: 16, fontFamily: fontFamilyBold }}>
-          Editar proyecto
-        </ThemedText>
-        <View style={{ marginTop: 16, marginBottom: 0 }}>
-          <FormInput
-            label={"Nombre del proyecto"}
-            size="large"
-            style={[styles.input]}
-            placeholder="Nombre de tu proyecto"
-            control={control}
-            name="name"
-            defaultValue={projectName}
-            autocapitalize="none"
-            rules={{
-              required: "Ingresa tu correo electrónico",
-            }}
-          />
-        </View>
-        <View style={{ marginTop: 16 }}>
-          <ColorPicker value={color} name="color" control={control} />
-        </View>
-        <Button
-          size="small"
-          disabled={!isDirty}
-          style={{ marginBottom: 12 }}
-          onPress={submit}
-          appearance={isLoading ? "outline" : "primary"}
-          {...(isLoading && { accessoryLeft: LoadingIndicator })}
-        >
-          <ThemedText>{isLoading ? "Guardando" : "Guardar"}</ThemedText>
-        </Button>
-        <Button
-          size="small"
-          disabled={isLoading}
-          appearance="outline"
-          onPress={toggleVisibility}
-        >
-          Cancelar
-        </Button>
-        {/* <Text
+        <FormProvider {...form}>
+          <>
+            <ThemedText style={{ fontSize: 16, fontFamily: fontFamilyBold }}>
+              Editar proyecto
+            </ThemedText>
+            <View style={{ marginTop: 16, marginBottom: 0 }}>
+              <FormInput
+                label={"Nombre del proyecto"}
+                size="large"
+                style={[styles.input]}
+                placeholder="Nombre de tu proyecto"
+                name="name"
+                defaultValue={projectName}
+                autocapitalize="none"
+                rules={{
+                  required: "Ingresa tu correo electrónico",
+                }}
+              />
+            </View>
+            <View style={{ marginTop: 16 }}>
+              <ColorPicker value={color} name="color" />
+            </View>
+            <Button
+              size="small"
+              disabled={!form.formState.isDirty}
+              style={{ marginBottom: 12 }}
+              onPress={submit}
+              appearance={isLoading ? "outline" : "primary"}
+              {...(isLoading && { accessoryLeft: LoadingIndicator })}
+            >
+              <ThemedText>{isLoading ? "Guardando" : "Guardar"}</ThemedText>
+            </Button>
+            <Button
+              size="small"
+              disabled={isLoading}
+              appearance="outline"
+              onPress={toggleVisibility}
+            >
+              Cancelar
+            </Button>
+            {/* <Text
           style={{
             marginTop: 16,
             textAlign: "center",
@@ -100,6 +97,8 @@ export default function EditProjectModal({
         >
           Cancelar
         </Text> */}
+          </>
+        </FormProvider>
       </Card>
     </Modal>
   );

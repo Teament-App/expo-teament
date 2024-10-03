@@ -30,7 +30,6 @@
     },
     "plugins": [
       "expo-router",
-      
       [
         "expo-document-picker",
         {
@@ -44,7 +43,8 @@
           "cameraPermission": "Allo ${PRODUCT_NAME} to access your camera"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true

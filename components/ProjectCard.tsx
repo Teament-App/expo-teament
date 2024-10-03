@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageComponent,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { router } from "expo-router";
@@ -12,6 +13,7 @@ import { GeneralStyles } from "@/constants/GeneralStyles";
 import { Avatar } from "@ui-kitten/components";
 import { Image } from "react-native-svg";
 import { ThemedText } from "./ThemedText";
+import { isAndroid } from "@/utils/utils";
 
 export type ProjectCardType = {
   id: number;
@@ -110,14 +112,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    elevation: 5,
-    shadowColor: "#3D4B5C",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
+    ...(!isAndroid() && {
+      shadowColor: "#3D4B5C",
+      shadowOffset: {
+        width: 0,
+        height: 6,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 12,
+      elevation: 5,
+    }),
   },
   projectCompleted: {
     backgroundColor: "#34be4425",

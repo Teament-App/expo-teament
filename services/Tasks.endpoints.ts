@@ -50,3 +50,11 @@ export const UPDATE_TASK = async ({ taskId, data }: any) => {
     throw e;
   }
 };
+
+export const CREATE_TASK = async (data: any) => {
+  try {
+    return await apiClient.post("/task", data);
+  } catch (e) {
+    throw e;
+  }
+};

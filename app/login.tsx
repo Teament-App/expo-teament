@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Icon } from "@ui-kitten/components";
 import LogoExtended from "@/components/svg/LogoExtended";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import FormInput from "@/components/FormInput";
 import apiClient from "@/services/Axios.client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSession } from "@/context/SessionContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 export default function index() {
+  const { t } = useTranslation("login");
   const [passVisible, setPassVisible] = useState(true);
   const { signIn } = useSession();
-  const {
-    control,
-    formState: { isValid },
-  } = useForm({
+  const form = useForm({
     mode: "onTouched",
   });
   const renderEyeIcon = (props: any): React.ReactElement => {
@@ -46,37 +45,41 @@ export default function index() {
   return (
     <SafeAreaView style={[styles.container]}>
       <LogoExtended />
-      <View>
-        <FormInput
-          label={"Correo electrónico"}
-          size="large"
-          style={[styles.input]}
-          placeholder="john.doe@verkian.com"
-          control={control}
-          name="email"
-          autocapitalize="none"
-          rules={{
-            required: "Ingresa tu correo electrónico",
-          }}
-        />
-        <FormInput
-          label={"Contraseña"}
-          size="large"
-          style={[styles.input]}
-          placeholder="*********"
-          secureTextEntry={passVisible}
-          accessoryRight={renderEyeIcon}
-          control={control}
-          name="password"
-          rules={{
-            required: "Ingresa tu cotraseña",
-          }}
-        />
+      <FormProvider {...form}>
+        <View>
+          <FormInput
+            label={t("email")}
+            size="large"
+            style={[styles.input]}
+            placeholder="john.doe@verkian.com"
+            name="email"
+            autocapitalize="none"
+            rules={{
+              required: t("email-error-required"),
+            }}
+          />
+          <FormInput
+            label={t("password")}
+            size="large"
+            style={[styles.input]}
+            placeholder="*********"
+            secureTextEntry={passVisible}
+            accessoryRight={renderEyeIcon}
+            name="password"
+            rules={{
+              required: t("password-error-required"),
+            }}
+          />
 
-        <Button disabled={!isValid} style={[styles.button]} onPress={submit}>
-          Iniciar sesión
-        </Button>
-      </View>
+          <Button
+            disabled={!form.formState.isValid}
+            style={[styles.button]}
+            onPress={submit}
+          >
+            {t("login-button")}
+          </Button>
+        </View>
+      </FormProvider>
     </SafeAreaView>
   );
 }

@@ -52,18 +52,20 @@ export default function UsersPopover({
       >
         <FlatList
           data={teammatesResponse?.users}
-          renderItem={({ item }) =>
-            item?.name && (
-              <UserWithInfo
-                onPress={() => onChange(item)}
-                selected={dataToCompare?.some(
-                  ({ userId }) => userId === item?.userId
-                )}
-                userName={`${item?.name} ${item?.last_name}`}
-                job={item?.job || null}
-              />
-            )
-          }
+          renderItem={({ item }) => {
+            return (
+              item?.name && (
+                <UserWithInfo
+                  onPress={() => onChange(item)}
+                  selected={dataToCompare?.some(
+                    ({ userId }) => userId === item?.userId
+                  )}
+                  userName={`${item?.name} ${item?.last_name}`}
+                  job={item?.job || null}
+                />
+              )
+            );
+          }}
           keyExtractor={(item) => item?.userId}
         ></FlatList>
       </Layout>

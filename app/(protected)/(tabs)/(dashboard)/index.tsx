@@ -20,7 +20,6 @@ export const renderTasks = ({ item }: { item: any }) => {
   const minifyTask: MinifiedTaskType = {
     ...item,
   };
-  console.log("Minify: ", minifyTask);
   return <Task {...minifyTask} />;
 };
 
@@ -58,17 +57,10 @@ export default function TabTwoScreen() {
         >
           <ThemedText
             type="subtitle"
-            style={{ fontFamily: "Montserrat_600SemiBold" }}
+            style={{ fontFamily: "Montserrat_600SemiBold", marginBottom: 8 }}
           >
-            Tasks
+            Tareas
           </ThemedText>
-          <Button
-            onPress={() => router.navigate("/(protected)/(task)/new")}
-            size="small"
-            appearance="ghost"
-          >
-            <ThemedText>Crear tarea</ThemedText>
-          </Button>
         </ThemedView>
         <ThemedView
           style={[{ width: "100%", height: "100%" }, styles.tasksContainer]}

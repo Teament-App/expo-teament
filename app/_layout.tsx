@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Stack, useRouter, useSegments } from "expo-router";
+import { Stack, useNavigation, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useRef, useState } from "react";
 import "react-native-reanimated";
@@ -34,6 +34,9 @@ import {
   useFonts,
 } from "@expo-google-fonts/montserrat";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import i18n from "../i18n";
+import { I18nextProvider } from "react-i18next";
+import { useLocales } from "expo-localization";
 
 const queryClient = new QueryClient();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -103,6 +106,7 @@ async function registerForPushNotificationsAsync() {
 }
 
 const StackLayout = () => {
+  const navigation = useNavigation();
   const { session, signOut } = useSession();
   const segments = useSegments();
   const router = useRouter();
@@ -110,8 +114,14 @@ const StackLayout = () => {
   useEffect(() => {
     const inAuthGroup = segments[0] === "(protected)";
     if (!session) {
-      router.replace("/");
-      // signOut();
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: "login",
+          },
+        ],
+      } as any);
     } else if (session) {
       router.replace("/(protected)/(tabs)/(dashboard)");
     }
@@ -119,7 +129,7 @@ const StackLayout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
+        name="login"
         options={{
           headerShown: false,
         }}
@@ -206,31 +216,32 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <IconRegistry icons={EvaIconsPack} />
-
-      <GestureHandlerRootView>
-        <QueryClientProvider client={queryClient}>
-          <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <ThemeProvider
-              value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-            >
-              <ApplicationProvider
-                {...eva}
-                theme={{
-                  ...(colorScheme === "dark"
-                    ? { ...eva.dark }
-                    : { ...eva.light }),
-                  ...customTheme,
-                }}
-                customMapping={mapping as any}
+      <I18nextProvider i18n={i18n}>
+        <GestureHandlerRootView>
+          <QueryClientProvider client={queryClient}>
+            <ThemeContext.Provider value={{ theme, toggleTheme }}>
+              <ThemeProvider
+                value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
               >
-                <SessionProvider>
-                  <StackLayout />
-                </SessionProvider>
-              </ApplicationProvider>
-            </ThemeProvider>
-          </ThemeContext.Provider>
-        </QueryClientProvider>
-      </GestureHandlerRootView>
+                <ApplicationProvider
+                  {...eva}
+                  theme={{
+                    ...(colorScheme === "dark"
+                      ? { ...eva.dark }
+                      : { ...eva.light }),
+                    ...customTheme,
+                  }}
+                  customMapping={mapping as any}
+                >
+                  <SessionProvider>
+                    <StackLayout />
+                  </SessionProvider>
+                </ApplicationProvider>
+              </ThemeProvider>
+            </ThemeContext.Provider>
+          </QueryClientProvider>
+        </GestureHandlerRootView>
+      </I18nextProvider>
     </SafeAreaProvider>
   );
 }

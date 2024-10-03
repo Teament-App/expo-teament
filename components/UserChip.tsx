@@ -34,6 +34,8 @@ const UserChip = ({
       <ThemedText
         type="title"
         style={[styles?.name, { fontFamily: "Montserrat_500Medium" }]}
+        numberOfLines={1}
+        ellipsizeMode="tail"
       >
         {userName}
       </ThemedText>

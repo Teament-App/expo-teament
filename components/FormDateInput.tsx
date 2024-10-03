@@ -34,12 +34,11 @@ export default function FormDateInput({
       onFocus={openCalendar}
       onBlur={field.onBlur}
       accessoryRight={accessoryRight}
-      // status={fieldState.error || fieldState.invalid ? "danger" : ""}
+      status={fieldState.error || fieldState.invalid ? "danger" : "basic"}
       caption={fieldState.error?.message}
       date={new Date(field.value)}
       initialVisibleDate={new Date(field.value)}
       max={new Date()}
-      status="basic"
       min={new Date(1960, 1, 1)}
     />
   );
