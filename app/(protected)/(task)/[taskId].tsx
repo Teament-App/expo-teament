@@ -9,7 +9,7 @@ import React, {
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useRoute } from "@react-navigation/native";
-import { Button, Input, InputProps } from "@ui-kitten/components";
+import { Button, Input, InputProps, Layout } from "@ui-kitten/components";
 
 import { TaskContext } from "@/context/TaskContext";
 import { ProjectSelect } from "@/components/ProjectSelector";
@@ -19,11 +19,16 @@ import { ScrollView } from "react-native-gesture-handler";
 import FileUploader from "@/components/FileUplader/FileUploader";
 import File from "@/components/TaskFile";
 import DateDisplay from "@/components/DateDisplay";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
 import { UPDATE_TASK } from "@/services/Tasks.endpoints";
 import { useQueryClient } from "react-query";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import PriorityAnchor from "@/components/PriorityAnchor";
+import Priority from "@/components/ModalComponents/Priority";
 
 const useInputState = (initialValue = ""): InputProps => {
   const [value, setValue] = React.useState(initialValue);
@@ -38,7 +43,10 @@ const TaskDetail = () => {
   const multilineInputState = useInputState(task?.description);
   const [dirty, setDirty] = useState<Set<string>>(new Set([]));
   const bottomSheetRef = useRef<BottomSheet>(null);
-
+  const [openPriority, setOpenPriority] = useState(false);
+  const [openBottomSheet, setOpenBottomSheet] = useState<boolean | string>(
+    false
+  );
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
@@ -73,6 +81,17 @@ const TaskDetail = () => {
       console.log(e);
     }
   };
+
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={1}
+        appearsOnIndex={2}
+      />
+    ),
+    []
+  );
 
   return (
     <SafeAreaView style={{ height: "100%" }}>
@@ -127,13 +146,19 @@ const TaskDetail = () => {
             />
           </ThemedView>
           <ThemedView style={{ marginTop: 8 }}>
-            <PriorityPopover
+            <PriorityAnchor
+              priority={task?.priority}
+              toggle={() => {
+                setOpenBottomSheet("priority");
+              }}
+            />
+            {/* <PriorityPopover
               priority={task?.priority}
               onChange={(value: any) => {
                 updateTask({ priority: value });
                 setDirty((prev: Set<any>) => new Set([...prev, "priority"]));
               }}
-            />
+            /> */}
           </ThemedView>
           <ThemedView style={{ marginTop: 8 }}>
             <UsersPopover
@@ -206,7 +231,62 @@ const TaskDetail = () => {
           </ThemedView>
         </ThemedView>
       </ScrollView>
-      {dirty?.size > 0 && (
+      {openBottomSheet && (
+        <View
+          style={[
+            {
+              flex: 1,
+              padding: 24,
+              backgroundColor: "#80808060",
+              zIndex: 100,
+              height: "100%",
+              width: "100%",
+              position: "absolute",
+            },
+          ]}
+        >
+          <BottomSheet
+            ref={bottomSheetRef}
+            onChange={handleSheetChanges}
+            // snapPoints={[50, 125]}
+            enableDynamicSizing
+            enablePanDownToClose
+            onClose={() => setOpenBottomSheet(false)}
+            backdropComponent={renderBackdrop}
+          >
+            <BottomSheetView
+              style={[
+                {
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  paddingHorizontal: 16,
+                },
+              ]}
+            >
+              <Layout
+                style={{
+                  width: "100%",
+                }}
+              >
+                {openBottomSheet === "priority" && (
+                  <Priority
+                    priority={task?.priority}
+                    title={false}
+                    onChange={(value: any) => {
+                      updateTask({ priority: value });
+                      setDirty(
+                        (prev: Set<any>) => new Set([...prev, "priority"])
+                      );
+                    }}
+                  />
+                )}
+              </Layout>
+            </BottomSheetView>
+          </BottomSheet>
+        </View>
+      )}
+      {dirty?.size > 0 && !openBottomSheet && (
         <BottomSheet
           ref={bottomSheetRef}
           onChange={handleSheetChanges}

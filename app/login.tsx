@@ -28,9 +28,10 @@ export default function index() {
 
   const submit = async () => {
     try {
+      const { mail, password } = form.getValues();
       const ans = await apiClient.post("/login", {
-        mail: "enrique@teamentapp.com",
-        password: "Uae9djtrklez0/",
+        mail,
+        password,
         type_login: "own",
       });
       const { access_token, refresh_token } = ans?.data;
@@ -52,7 +53,7 @@ export default function index() {
             size="large"
             style={[styles.input]}
             placeholder="john.doe@verkian.com"
-            name="email"
+            name="mail"
             autocapitalize="none"
             rules={{
               required: t("email-error-required"),

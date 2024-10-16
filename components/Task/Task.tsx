@@ -35,7 +35,8 @@ const Task = ({
     router.push(`/(protected)/(task)/${id || tasks_id}`);
   };
   return (
-    <View
+    <TouchableOpacity
+      onPress={goToTaskDetail}
       style={[
         taskStyles.taskContainer,
         complete && taskStyles.completeContainer,
@@ -52,13 +53,11 @@ const Task = ({
           height={18}
           {...(complete ? { stroke: "#73bd50" } : {})}
         />
-        <TouchableOpacity onPress={goToTaskDetail}>
-          <View>
-            <ThemedText style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
-              {title || tittle}
-            </ThemedText>
-          </View>
-        </TouchableOpacity>
+        <View>
+          <ThemedText style={{ fontSize: 12, fontFamily: fontFamilyRegular }}>
+            {title || tittle}
+          </ThemedText>
+        </View>
       </View>
       <View
         style={[
@@ -124,7 +123,7 @@ const Task = ({
           />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
